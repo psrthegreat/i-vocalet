@@ -2,7 +2,7 @@ html, body, .container{
     width: 100%;
 }
 body {
-    font: 13px "Lucida Grande", Helvetica, Arial, sans-serif;
+    font: 11px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 pre {
     white-space:pre-wrap;
