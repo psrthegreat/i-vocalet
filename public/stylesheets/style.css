@@ -6,6 +6,12 @@ body {
 }
 pre {
     white-space:pre-wrap;
+    font-family: "Futura", courier, monospace; 
+    font-weight: 200;
+}
+
+span{
+    color: #FF1400;
 }
 
 a {
