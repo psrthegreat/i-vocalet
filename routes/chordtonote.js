@@ -1,40 +1,3 @@
-
-/*
-var music = require("./base-music");
-
-var Note = music.Note;
-var Interval = music.Interval;
-var MUSIC = music.MUSIC;
-
-var c = Note.fromLatin('C4');
-var cmaj = c.add(['unison','major third','fifth']);
-
-// or by note names
-var cmaj = Note.fromLatin('C4E4G4');
-
-// then loop through chord array for each note object
-for (var i = 0; i < cmaj.length; i++) {
-console.log(cmaj[i].frequency());
-}
-
-var c = Note.fromLatin('C3'); 
-
-// by semitone 
-var wholeStep = Interval.fromSemitones(2); 
-var d = c.add(wholeStep); 
-console.log(d.latin()); // "D" 
-
-// by interval name 
-var g = c.add('fifth'); 
-console.log(g.latin()); // "G"
-
-*/
-
-// Copyright 2008 Scott Davies.  All rights reserved.
-// Licensed by Pony-Complete, LLC. 
-
-// requires Prototype
-
 var Music = {
     intersect_arrays: function (a, b) { 
 	// prototype's intersect is BROKEN: ignores 0 elements because 0 
@@ -395,5 +358,13 @@ Music.c_semitone_scales.forEach (function(c) {
 	c[3] = i++;
     });
 
-var notes = Music.noteOrChordNamesStringToCSemitoneNumbers("Pranav", true);
-console.log(notes);
+exports.convert = function(query){
+    if(query.length === 1){
+        query += "maj";
+    }
+    if(query.length === 2){
+        if(query[1] === "#" || query[1] === "b") query +="maj";
+    }
+    var notes = Music.noteOrChordNamesStringToCSemitoneNumbers(query, true);
+    return notes;
+}

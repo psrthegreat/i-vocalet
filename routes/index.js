@@ -1,6 +1,8 @@
 var http = require('http');
 var cheerio = require('cheerio');
 var request = require("request");
+var cton = require("./chordtonote"); 
+var tablink = require("./tablink");
 
 Array.prototype.getUnique = function(){
     var u = {}, a = [];
@@ -18,7 +20,7 @@ exports.index = function(req, res){
     res.render('index', { title: 'Express' });
 };
 
-exports.scrape = function(link , callback){
+var scrape = exports.scrape = function(link , callback){
     request(link, function(error, response, body){
         var dt = getLyricsWithChords(body);
         callback(dt);
@@ -32,7 +34,7 @@ function getLyricsWithChords(chunk){
 }
 
 function extractChords(chunk){
-    $ = cheerio.load(dt);
+    $ = cheerio.load(chunk);
     var chords = [];
     $.root().find('span').each(function(i, elem) {
         chords[i] = $(this).text();
@@ -40,9 +42,43 @@ function extractChords(chunk){
     return chords.getUnique();
 }
 
-exports.getChords = function(req, res, link){
+var getChords = exports.getChords = function(link, callback){
     request(link, function(error, response, body){
+        var dt = extractChords(body);
+        callback(dt); 
+    });
+}
+
+function getSongBodyFromQuery(query, callback){
+  tablink.getSiteURL(query, function(url){
+        scrape(url, function(dt){
+            callback(dt);
+        });
+  });
+}
+
+exports.handleRoot = function(req, res){
+    getSongBodyFromQuery(req.query.q, function(body){
+        res.render('index', {data:body});
+    });
+}
+
+exports.getChords = function(req, res){
+    getSongBodyFromQuery(req.query.q, function(body){
         var dt = extractChords(body);
         res.json(dt); 
     });
-}
+};
+
+exports.getNotes = function(req, res){
+    getSongBodyFromQuery(req.query.q, function(body){
+        var dt = extractChords(body);
+        var notesArr = [];
+        for(var i = 0; i < dt.length; i++){
+            var obj = {};
+            obj[dt[i]] = cton.convert(dt[i]); 
+            notesArr.push(obj);
+        }
+        res.json(notesArr); 
+    });
+};
