@@ -42,13 +42,6 @@ function extractChords(chunk){
     return chords.getUnique();
 }
 
-var getChords = exports.getChords = function(link, callback){
-    request(link, function(error, response, body){
-        var dt = extractChords(body);
-        callback(dt); 
-    });
-}
-
 function getSongBodyFromQuery(query, callback){
   tablink.getSiteURL(query, function(url){
         scrape(url, function(dt){
@@ -58,12 +51,20 @@ function getSongBodyFromQuery(query, callback){
 }
 
 exports.handleRoot = function(req, res){
+    if(req.query.q === undefined){
+        res.send("Please enter a url ?q= query");
+        return;
+    }
     getSongBodyFromQuery(req.query.q, function(body){
         res.render('index', {data:body});
     });
 }
 
 exports.getChords = function(req, res){
+    if(req.query.q === undefined){
+        res.send("Please enter a url ?q= query");
+        return;
+    }
     getSongBodyFromQuery(req.query.q, function(body){
         var dt = extractChords(body);
         res.json(dt); 
@@ -71,6 +72,10 @@ exports.getChords = function(req, res){
 };
 
 exports.getNotes = function(req, res){
+    if(req.query.q === undefined){
+        res.send("Please enter a url ?q= query");
+        return;
+    }
     getSongBodyFromQuery(req.query.q, function(body){
         var dt = extractChords(body);
         var notesArr = [];

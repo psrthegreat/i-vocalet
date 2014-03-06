@@ -31,6 +31,9 @@ if ('development' == app.get('env')) {
 app.get('/', routes.handleRoot);
 app.get('/c', routes.getChords);
 app.get('/n', routes.getNotes);
+app.get('*', function(req, res){
+ res.send('404');
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
