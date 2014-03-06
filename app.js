@@ -20,9 +20,8 @@ app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
-app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(app.router);
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
@@ -32,7 +31,7 @@ app.get('/', routes.handleRoot);
 app.get('/c', routes.getChords);
 app.get('/n', routes.getNotes);
 app.get('*', function(req, res){
- res.send('404');
+ res.status(404).send('404');
 });
 
 http.createServer(app).listen(app.get('port'), function(){
