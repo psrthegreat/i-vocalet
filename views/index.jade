@@ -1,5 +1,8 @@
-extends layout
-
-block content
-  h1= title
-  pre !{data}
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    div.container
+        pre !{data}
