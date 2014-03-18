@@ -222,6 +222,7 @@ var Music = {
     noteOrChordNameToCSemitoneNumberAndSemitoneNumbers: function (str, default_to_notes) {
 	var t = this.noteOrChordNameToCSemitoneNumberAndSuffix(str);
 	if (!t) { 
+	    return null;
 	    throw("Unrecognized note or chord name: " + str + ".");
 	}
         var note_is_lower_case = (str.charAt(0) == str.charAt(0).toLowerCase());
@@ -230,6 +231,7 @@ var Music = {
 	}
 	var semitones = this.chordSuffixToSemitoneNumbers(t[1]);
 	if (!semitones) {
+	    return null;
 	    throw("Unrecognized note or chord name: " + str + ".");
         }
 	return [t[0], this.chordSuffixToSemitoneNumbers(t[1])];
@@ -367,4 +369,8 @@ exports.convert = function(query){
     }
     var notes = Music.noteOrChordNamesStringToCSemitoneNumbers(query, true);
     return notes;
+}
+
+exports.getLatinBase = function(query){
+	return C_chromatic_scale_to_note_name_array[query][0];
 }

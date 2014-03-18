@@ -3,6 +3,11 @@ var cheerio = require('cheerio');
 var request = require("request");
 var cton = require("./chordtonote"); 
 var tablink = require("./tablink");
+var fs = require('fs');
+var music = require("./base-music");
+var Note = music.Note;
+var Interval = music.Interval;
+var MUSIC = music.MUSIC;
 
 Array.prototype.getUnique = function(){
     var u = {}, a = [];
@@ -81,9 +86,24 @@ exports.getNotes = function(req, res){
         var notesArr = [];
         for(var i = 0; i < dt.length; i++){
             var obj = {};
-            obj[dt[i]] = cton.convert(dt[i]); 
-            notesArr.push(obj);
+            if(cton.convert(dt[i])[0] !== null){
+                var notes = cton.convert(dt[i])[0];
+                for (var j =1; j< notes.length; j++){
+                   if(notes[j] < notes[j-1]){
+                       notes[j] += 12;
+                   }
+                }
+                
+                obj[dt[i]] = notes; 
+                notesArr.push(obj);
+            }
         }
         res.json(notesArr); 
     });
 };
+
+exports.up = function(req, res){
+    fs.rename(req.files.wave.path,"/Users/Phoenix/Documents/Projects/i-vocalet/public/audio/" + req.files.wave.name, function(){
+        res.end();
+    });
+}

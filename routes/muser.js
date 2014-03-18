@@ -395,5 +395,3 @@ Music.c_semitone_scales.forEach (function(c) {
 	c[3] = i++;
     });
 
-var notes = Music.noteOrChordNamesStringToCSemitoneNumbers("Pranav", true);
-console.log(notes);

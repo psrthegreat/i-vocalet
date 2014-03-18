@@ -19,6 +19,8 @@ app.set('view engine', 'jade');
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
+//app.use(express.json());       // to support JSON-encoded bodies
+//app.use(express.urlencoded()); // to support URL-encoded bodies
 app.use(express.methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(app.router);
@@ -30,6 +32,7 @@ if ('development' == app.get('env')) {
 app.get('/', routes.handleRoot);
 app.get('/c', routes.getChords);
 app.get('/n', routes.getNotes);
+app.post('/m', routes.up); 
 app.get('*', function(req, res){
  res.status(404).send('404');
 });
