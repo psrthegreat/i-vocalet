@@ -1,7 +1,7 @@
 var http = require('http');
 var cheerio = require('cheerio');
 var request = require("request");
-var cton = require("./chordtonote"); 
+var cton = require("./chordtonote");
 var tablink = require("./tablink");
 var fs = require('fs');
 var music = require("./base-music");
@@ -44,15 +44,20 @@ function extractChords(chunk){
     $.root().find('span').each(function(i, elem) {
         chords[i] = $(this).text();
     });
+    if(chords.length == 0) return [];
     return chords.getUnique();
 }
 
 function getSongBodyFromQuery(query, callback){
   tablink.getSiteURL(query, function(url){
+  	if(url === null) callback(null);
+  	else{
         scrape(url, function(dt){
             callback(dt);
         });
+       }
   });
+
 }
 
 exports.handleRoot = function(req, res){
@@ -72,7 +77,7 @@ exports.getChords = function(req, res){
     }
     getSongBodyFromQuery(req.query.q, function(body){
         var dt = extractChords(body);
-        res.json(dt); 
+        res.json(dt);
     });
 };
 
@@ -93,17 +98,27 @@ exports.getNotes = function(req, res){
                        notes[j] += 12;
                    }
                 }
-                
-                obj[dt[i]] = notes; 
+
+                obj[dt[i]] = notes;
                 notesArr.push(obj);
             }
         }
-        res.json(notesArr); 
+        res.json(notesArr);
     });
 };
 
 exports.up = function(req, res){
-    fs.rename(req.files.wave.path,"/Users/Phoenix/Documents/Projects/i-vocalet/public/audio/" + req.files.wave.name, function(){
+	console.log(req.files);
+    fs.rename(req.files.wave.path,"/Users/Phoenix/Documents/Projects/i-vocalet/public/audio/" + req.files.wave.name + ".wav", function(){
         res.end();
     });
+}
+
+exports.getAllWavs = function(req, res){
+	fs.readdir("/Users/Phoenix/Documents/Projects/i-vocalet/public/audio/", function(err, files){
+		if (err) console.log(err);
+		if(files[0] == '.DS_Store')
+    	files.splice(0,1);
+    	res.json(files);
+	});
 }

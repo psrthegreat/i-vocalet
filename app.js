@@ -29,13 +29,18 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+app.get('/v', function(req,res){
+    res.sendfile("public/main.html");
+});
 app.get('/', routes.handleRoot);
 app.get('/c', routes.getChords);
 app.get('/n', routes.getNotes);
-app.post('/m', routes.up); 
+app.post('/m', routes.up);
+app.get('/a', routes.getAllWavs);
 app.get('*', function(req, res){
  res.status(404).send('404');
 });
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
