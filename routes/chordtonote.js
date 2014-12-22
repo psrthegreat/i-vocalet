@@ -1,3 +1,4 @@
+// Code From Scott Davies 2008, license by Pony-Complete, LLC. 
 var Music = {
     intersect_arrays: function (a, b) { 
 	// prototype's intersect is BROKEN: ignores 0 elements because 0 

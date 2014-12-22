@@ -1,13 +1,9 @@
 var http = require('http');
 var cheerio = require('cheerio');
 var request = require("request");
+var fs = require('fs');
 var cton = require("./chordtonote");
 var tablink = require("./tablink");
-var fs = require('fs');
-var music = require("./base-music");
-var Note = music.Note;
-var Interval = music.Interval;
-var MUSIC = music.MUSIC;
 
 Array.prototype.getUnique = function(){
     var u = {}, a = [];
