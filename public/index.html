@@ -20,18 +20,33 @@
   
   </head>
   <body>
-    <h1>i-Vocalet</h1>
+      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      <!-- Include all compiled plugins (below), or include individual files as needed -->
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+      <!-- audiosynth javascript library -->
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    <!-- audiosynth javascript library -->
-    <script src="lib/audio/audiosynth.js"></script>
-    <script src="js/ivocalet.js"></script>
-    <script src="js/musician.js"></script>
-    <script src="js/orchestra.js"></script>
+      <script src="lib/audio/audiosynth.js"></script>
+      <script src="js/ivocalet.js"></script>
+      <script src="js/musician.js"></script>
+      <script src="js/orchestra.js"></script>
+
+  <div class="container-fluid">
+      <h1>i-Vocalet</h1>
+      <div class="row">
+        <div class="col-sm-4">Arpeggio</div>
+        <div class="col-sm-4">Triad</div>
+        <div class="col-sm-4">Acoustic Guitar</div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-4" id="arpeggio">Arpeggio-data</div>
+        <div class="col-sm-4" id="triad">Triad-data</div>
+        <div class="col-sm-4" id="bass">Acoustic Guitar-data</div>
+      </div>
+
+  </div>    
   </body>
 </html>
 
@@ -41,8 +56,10 @@
     
     var orchestra = new Orchestra( );
     orchestra.start( );
-
 </script>
+
+
+
 
 
 
