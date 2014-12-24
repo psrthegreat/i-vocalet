@@ -30,13 +30,18 @@
     <!-- audiosynth javascript library -->
     <script src="lib/audio/audiosynth.js"></script>
     <script src="js/ivocalet.js"></script>
+    <script src="js/musician.js"></script>
+    <script src="js/orchestra.js"></script>
   </body>
 </html>
 
 <script type="text/javascript">
     var ivocalet = new Ivocalet(Synth);
-    ivocalet.run( );
+    ivocalet.init( );
     
+    var orchestra = new Orchestra( );
+    orchestra.start( );
+
 </script>
 
 
