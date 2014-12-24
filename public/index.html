@@ -20,7 +20,7 @@
   
   </head>
   <body>
-    <h1>i-Vocalet!</h1>
+    <h1>i-Vocalet</h1>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -28,16 +28,14 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <!-- audiosynth javascript library -->
-    <script src="audiosynth.js"></script>
+    <script src="lib/audio/audiosynth.js"></script>
+    <script src="js/ivocalet.js"></script>
   </body>
 </html>
 
 <script type="text/javascript">
-    Synth.generate('piano', 'D', 4, 2);
-    Synth.generate('piano', 'E', 4, 2);
-    Synth.debug( );
-    Synth.play('piano', 'D', 4, 2);
-    Synth.play('piano', 'E', 4, 2);
+    var ivocalet = new Ivocalet(Synth);
+    ivocalet.run( );
     
 </script>
 
