@@ -55,14 +55,13 @@ function getSongBodyFromQuery(query, callback){
   });
 
 }
-
 exports.handleRoot = function(req, res){
     if(req.query.q === undefined){
         res.send("Please enter a url ?q= query");
         return;
     }
     getSongBodyFromQuery(req.query.q, function(body){
-        res.render('index', {data:body});
+        res.render('showing', {data:body});
     });
 }
 

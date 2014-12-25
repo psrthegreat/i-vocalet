@@ -1,0 +1,19 @@
+html, body, .container{
+    width: 100%;
+}
+body {
+    font: 11px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+pre {
+    white-space:pre-wrap;
+    font-family: "Futura", courier, monospace; 
+    font-weight: 200;
+}
+
+span{
+    color: #FF1400;
+}
+
+a {
+    color: #00B7FF;
+}

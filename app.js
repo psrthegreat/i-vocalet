@@ -27,15 +27,16 @@ if ('development' == app.get('env')) {
 app.get('/making', function(req,res){
     res.render('making');
 });
-app.get('/', function(req,res){
-	res.render('index');
-});
 
-app.get('/r', routes.handleRoot);
+app.get('/showing', routes.handleRoot);
 app.get('/c', routes.getChords);
 app.get('/n', routes.getNotes);
 app.post('/m', routes.up);
 app.get('/a', routes.getAllWavs);
+app.get('/', function(req,res){
+	res.render('index');
+});
+
 app.get('*', function(req, res){
  res.status(404).send('404');
 });
