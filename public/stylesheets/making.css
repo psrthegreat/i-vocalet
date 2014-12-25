@@ -38,9 +38,9 @@ section {
 }
 
 #header-section {
-	padding-top: 230px;
-	padding-bottom: 230px;
-	background: url('/images/bgb.jpg') no-repeat;
+	padding-top: 200px;
+	padding-bottom: 200px;
+	background: url('/images/bg.png') no-repeat;
 	background-size: cover;
 	background-repeat: no-repeat;
 	color: white;
@@ -71,7 +71,8 @@ section {
 }
 
 #title {
-	font-size: 6.0vmax;
+	font-size: 10.0vmax;
+	font-weight: 500;
 }
 
 #subtitle {

@@ -24,8 +24,8 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/v', function(req,res){
-    res.render('main');
+app.get('/making', function(req,res){
+    res.render('making');
 });
 app.get('/', function(req,res){
 	res.render('index');
