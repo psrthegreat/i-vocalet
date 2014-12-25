@@ -25,9 +25,13 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/v', function(req,res){
-    res.sendfile("public/main.html");
+    res.render('main');
 });
-app.get('/', routes.handleRoot);
+app.get('/', function(req,res){
+	res.render('index');
+});
+
+app.get('/r', routes.handleRoot);
 app.get('/c', routes.getChords);
 app.get('/n', routes.getNotes);
 app.post('/m', routes.up);

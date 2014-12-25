@@ -1,0 +1,115 @@
+doctype html
+head
+	meta(charset='utf-8')
+	meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+	meta(name='viewport', content='width=device-width, initial-scale=1')
+	title Vocalet | The Process
+	meta(name='description', content='')
+	meta(name='author', content='Pranav Rajpurkar')
+	link(rel='shortcut icon', href='/favicon.ico')
+	//link(rel='apple-touch-icon', href='/apple-touch-icon.png')
+	link(rel='stylesheet', type='text/css', href='/stylesheets/bootstrap.min.css')
+	link(rel='stylesheet', type='text/css', href='/stylesheets/main.css')
+body
+	section#header-section
+		.container
+			.row
+				.col-md-5
+					h1#title i-Vocalet
+	section#dawn-section
+		.container
+			.col-md-8
+				.row
+					h1 How It All Started
+					h4
+						| Last year, my friend and I decided to make a web application to help people sing. We were inspired by the idea of
+						| being able to provide a platform on which people can practice. Our vision was to be able to recommend songs based on the user&apos;s voice type. We discovered this was a
+						| challenging problem, and instead decided to focus our efforts on creating an easy online karaoke web-app. You can find it at vocalet.com
+				.row
+					h1 Why It Matters To Me
+					h4
+						| I like to sing because it&apos;s enjoyable. I usually find a piano/guitar/friend around me to accompany my singing, and sing whatever I&apos;m in the mood for.
+				.row
+					h1 Coming Full Circle 
+					h4
+						| This quarter, after learning about mobile music, I felt like I could return to my vision of building singing tools with a new perspective.
+						| After thinking about the way I went about practicing, and realized that it would be super cool if the device would be able to replace the necessity
+						| of having a piano/guitar/friend around.
+	section#vision-bg-section
+	section
+		.container
+			.col-md-6
+				.row
+					h1 Design Choices 
+					p
+						| I wanted the design of the app to be simple, but flexible. Keeping the application high-level was
+						| neccessary with the end-user of a novice dabbler in mind. However, I wanted to keep the application as flexible as possible.
+					h2 The Accompaniment Engine
+					p
+						| There were several different design options when it came down to the core of Vocalet: the accompaniment engine.
+						| There was the question of how the accompaniment should be done manually vs automatically. With sophisticated engineering,
+						| it would have been possible to accompany the singing with no user input. However, having the cornucopia of chords to choose
+						| from added a gaming component to the whole app, and made trying to accompany oneself on hard-songs especially fun.
+					p
+						| To make the decision, I decided to implement the system in the same way that I would if I were in front of a real piano.
+						| The expressiveness and the high-levelness of the app are hence both maintained.
+					h2 Tailored-presets vs. Any Song?
+					p
+						| In making the app, it was very clear to me from the very start that a very appealing feature of the application would be
+						| the ability to be able to choose any song off the charts and sing along. Although tailoring songs specifically to the app
+						| might have led to a better sounding musical experience, it would be outweighed by the costs of not being able to choose
+						| your song. The expressiveness aspect of the whole experience was integral to the design of the app.
+			.col-md-4.col-md-offset-1
+				.row
+					img(src='/images/ss2.png', width='100%')
+	section#feats-bg-section
+		.row
+			.container
+				.col-md-4.col-offset.1
+					img(src='/images/ss1.png', width='100%')
+				.col-md-4.col-offset.1
+					img(src='/images/ss3.png', width='100%')
+				.col-md-4.col-offset.1
+					img(src='/images/ss4.png', width='100%')
+	section#feats-section
+		.row
+			.container
+				.col-md-8
+					h1  Features 
+					h2  Choose your song 
+					p
+						| The ability to select any song. The tabs are scraped from tabs.ultimate-guitar.com/, sorted according to popularity, restyled,
+						| and re-rendered in the web-view controller.
+					h2  Choose your accompanying instruments 
+					p
+						| The accompanying instruments, which are chosen by the user at the start of the app, are used to render music on the fly.
+						| The Momu-Stk toolkit instruments are used, both with different progression patterns.
+					h2  Tempo control 
+					p
+						| The speed of the accompaniment can be controlled with a UIStepper to fit the user&apos;s taste in song speed.
+					h2  Dynamic Volume Control 
+					p
+						| The capabilities of the Iphone allow for interesting uses of parameters of the phone such as &apos;attitude&apos; (accelerometer + gyro).
+						| This is made use of in being able to control the volume of the app.
+					h2  Social Inspiration 
+					p
+						| The user can record and upload their recordings for the world to hear. The ability to be able to listen
+						| to others&apos; recordings allows for inspiration, and a sense of community around the enjoyment of singing
+						| music.
+	section#flow-bg-section
+		.container
+			.col-md-10.col-md-offset-1
+				img(src='/images/flow.png', width='100%')
+	section#conc-section
+		.row
+			.container
+				h1 Going Forward
+				p
+					| I believe that platforms that allow people to express themselves musically are as important as platforms that allow
+					| consumption of music. Vocalet is a start towards having people sing in a different, expressive way than other platforms
+					| currently allow. Going forward, I hope that it will be a helpful tool for others to use, and enjoy.
+				h2 We all have a singer within us. The moment is yours: Capture It.
+	nav.navbar.navbar-default.navbar-static-bottom(role='navigation')
+		.container
+			p.navbar-text
+				| Pranav Rajpurkar 2014

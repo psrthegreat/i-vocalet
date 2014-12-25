@@ -1,8 +1,27 @@
-doctype html
-html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    div.container
-        pre !{data}
+doctype html(lang='en')
+head
+	meta(charset='utf-8')
+	meta(http-equiv='X-UA-Compatible', content='IE=edge')
+	meta(name='viewport', content='width=device-width, initial-scale=1')
+	title i-Vocalet
+	link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+	script(src='/javascripts/jquery-1.9.1.min.js')
+	script(src='/javascripts/bootstrap.min.js')
+	script(src='/javascripts/audiosynth.js')
+	script(src='/javascripts/ivocalet.js')
+	script(src='/javascripts/musician.js')     
+	script(src='/javascripts/orchestra.js')
+	.style
+		//use this space for quick css testing
+body
+	.container
+		h1 i-Vocalet
+		.row
+			.col-sm-4 Arpeggio
+			.col-sm-4 Triad
+			.col-sm-4 Acoustic Guitar
+		hr
+		.row
+			#arpeggio.col-sm-4 Arpeggio-data
+			#triad.col-sm-4 Triad-data
+			#bass.col-sm-4 Acoustic Guitar-data
