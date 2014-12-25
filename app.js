@@ -27,7 +27,9 @@ if ('development' == app.get('env')) {
 app.get('/making', function(req,res){
     res.render('making');
 });
-
+app.get('/main', function(req,res){
+	res.render('main');
+});
 app.get('/showing', routes.handleRoot);
 app.get('/c', routes.getChords);
 app.get('/n', routes.getNotes);
