@@ -15,7 +15,7 @@ Orchestra.prototype.start = function( ) {
 
     
     var musician_organ = new Musician(Synth, 'organ', [ ]);
-    musician_organ.setTriadTempo(3);
+    musician_organ.setTriadTempo(1);
     //console.log(musician_organ.triad_tempo);
     
     this.t2 = window.setInterval(function( ){
@@ -26,7 +26,7 @@ Orchestra.prototype.start = function( ) {
     
     var musician_acoustic_guitar = new Musician(Synth, 'acoustic', []);
     //console.log(musician_acoustic_guitar.bass_tempo);
-    musician_acoustic_guitar.setBassTempo(3);
+    musician_acoustic_guitar.setBassTempo(1);
     this.t3 = window.setInterval(function( ){
     	musician_acoustic_guitar.bass( );	
     }, musician_acoustic_guitar.bass_tempo);
