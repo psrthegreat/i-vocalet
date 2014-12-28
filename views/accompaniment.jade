@@ -15,29 +15,39 @@ head
 		div{
 			border: 1px solid #000;
 		}
+		pre {
+			white-space:pre-wrap;
+			font-family: "Futura", courier, monospace; 
+			font-weight: 200;
+			font-size: 1.0em;
+			letter-spacing: 0.01em;
+		}
 body
 	.container
 		.row
-			.col-md-3 Vocalet 
-			.col-md-3.col-md-offset-6 Back
+			.col-md-12 Vocalet 
+			//.col-md-3.col-md-offset-6 Back
 		.row
-			.col-md-12 This is the dynamic html.....
-		.row
-			.col-md-10 Don't stop Believing
-			.col-md-1 Add
-			.col-md-1 Sub
-		.row
-			.col-md-12
-		.row
-			.col-md-2 C
-			.col-md-2 D
-			.col-md-2 E
-			.col-md-2 F
-			.col-md-2 G
-			.col-md-2 A
-		.row
-			.col-md-12
-		.row
-			.col-md-4 Record
-			.col-md-4 Stop
-			.col-md-4 Upload
+			.col-md-6 
+				pre
+					!{data}
+			.col-md-6
+				.row
+					.col-md-10 Don't stop Believing... playing
+					.col-md-1 Add
+					.col-md-1 Sub
+				.row
+					.col-md-12
+				.row
+					.col-md-2 C
+					.col-md-2 D
+					.col-md-2 E
+					.col-md-2 F
+					.col-md-2 G
+					.col-md-2 A
+				.row
+					.col-md-12
+				.row
+					.col-md-4 Record
+					.col-md-4 Stop
+					.col-md-4 Upload

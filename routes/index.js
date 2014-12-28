@@ -65,6 +65,14 @@ exports.handleRoot = function(req, res){
     });
 }
 
+
+exports.handleAccompaniment = function(req,res){
+    getSongBodyFromQuery("Nothing Else Matters", function(body){
+        res.render('accompaniment', {data:body});
+    });
+}
+
+
 exports.getChords = function(req, res){
     if(req.query.q === undefined){
         res.send("Please enter a url ?q= query");

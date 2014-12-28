@@ -27,9 +27,15 @@ if ('development' == app.get('env')) {
 app.get('/making', function(req,res){
     res.render('making');
 });
-app.get('/main', function(req,res){
-	res.render('main');
+
+/*
+app.get('/accompaniment', function(req,res){
+    res.render('accompaniment');
 });
+*/
+
+
+app.get('/accompaniment', routes.handleAccompaniment); // to make an online query for a song
 app.get('/showing', routes.handleRoot);
 app.get('/c', routes.getChords);
 app.get('/n', routes.getNotes);
