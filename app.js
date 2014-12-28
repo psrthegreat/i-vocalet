@@ -39,8 +39,10 @@ app.get('/accompaniment', routes.handleAccompaniment); // to make an online quer
 app.get('/showing', routes.handleRoot);
 app.get('/c', routes.getChords);
 app.get('/n', routes.getNotes);
+/*
 app.post('/m', routes.up);
 app.get('/a', routes.getAllWavs);
+*/
 app.get('/', function(req,res){
 	res.render('index');
 });
