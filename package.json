@@ -6,9 +6,10 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "cheerio": "*",
     "express": "3.3.5",
     "jade": "*",
-    "cheerio": "*",
+    "memoizee": "^0.3.8",
     "request": "*"
   }
 }
