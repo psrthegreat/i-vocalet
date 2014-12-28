@@ -4,6 +4,9 @@ var request = require("request");
 var fs = require('fs');
 var cton = require("./chordtonote");
 var tablink = require("./tablink");
+var memoize = require('memoizee');
+
+var memoizedScrape = memoize(scrape, {length:2, primitive: true, async: true,  maxAge: 10000000, max: 100});
 
 Array.prototype.getUnique = function(){
     var u = {}, a = [];
@@ -21,8 +24,8 @@ exports.index = function(req, res){
     res.render('index', { title: 'Express' });
 };
 
-var scrape = exports.scrape = function(link , callback){
-    request(link, function(error, response, body){
+function scrape(link , callback){
+     request(link, function(error, response, body){
         var dt = getLyricsWithChords(body);
         callback(dt);
     });
@@ -48,7 +51,7 @@ function getSongBodyFromQuery(query, callback){
   tablink.getSiteURL(query, function(url){
   	if(url === null) callback(null);
   	else{
-        scrape(url, function(dt){
+        memoizedScrape(url, function(dt){
             callback(dt);
         });
        }
@@ -65,13 +68,11 @@ exports.handleRoot = function(req, res){
     });
 }
 
-
 exports.handleAccompaniment = function(req,res){
     getSongBodyFromQuery("Nothing Else Matters", function(body){
         res.render('accompaniment', {data:body});
     });
 }
-
 
 exports.getChords = function(req, res){
     if(req.query.q === undefined){
@@ -110,6 +111,7 @@ exports.getNotes = function(req, res){
     });
 };
 
+/*
 exports.up = function(req, res){
 	console.log(req.files);
     fs.rename(req.files.wave.path,"/Users/Phoenix/Documents/Projects/i-vocalet/public/audio/" + req.files.wave.name + ".wav", function(){
@@ -125,3 +127,4 @@ exports.getAllWavs = function(req, res){
     	res.json(files);
 	});
 }
+*/
