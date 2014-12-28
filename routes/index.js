@@ -68,9 +68,7 @@ exports.handleRoot = function(req, res){
 
 exports.handleAccompaniment = function(req,res){
     getSongBodyFromQuery("Nothing Else Matters", function(body){
-        //res.render('accompaniment', {data:body});
         var chords = extractChords(body);
-        console.log(chords);
         res.render('accompaniment', {data:body, chords:chords});
     });
 }

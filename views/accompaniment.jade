@@ -39,8 +39,9 @@ body
 				.row
 					.col-md-12
 				.row
-					pre
-						!{chords}
+					- each chord in chords
+						//button(class="btn btn-primary btn-lg" data-action="bea")= chord
+						button(type="button" class="btn btn-primary btn-lg")= chord
 					//.col-md-2 C
 					//.col-md-2 D
 					//.col-md-2 E
