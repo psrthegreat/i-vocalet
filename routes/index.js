@@ -4,9 +4,9 @@ var request = require("request");
 var fs = require('fs');
 var cton = require("./chordtonote");
 var tablink = require("./tablink");
+var memProfile = require('memoizee/profile');
 var memoize = require('memoizee');
 
-var memoizedScrape = memoize(scrape, {length:2, primitive: true, async: true,  maxAge: 10000000, max: 100});
 
 Array.prototype.getUnique = function(){
     var u = {}, a = [];
@@ -24,12 +24,15 @@ exports.index = function(req, res){
     res.render('index', { title: 'Express' });
 };
 
-function scrape(link , callback){
+var scrape = function(link , callback){
      request(link, function(error, response, body){
         var dt = getLyricsWithChords(body);
-        callback(dt);
+        callback(error, dt);
     });
 }
+
+
+var memoizedScrape = memoize(scrape, {length:1, async: true, maxAge: 10000000, max: 100, primitive: true});
 
 function getLyricsWithChords(chunk){
     $ = cheerio.load(chunk);
@@ -51,7 +54,8 @@ function getSongBodyFromQuery(query, callback){
   tablink.getSiteURL(query, function(url){
   	if(url === null) callback(null);
   	else{
-        memoizedScrape(url, function(dt){
+        memoizedScrape(url, function(err, dt){
+            console.log(memProfile.log()); 
             callback(dt);
         });
        }
@@ -73,6 +77,7 @@ exports.handleAccompaniment = function(req,res){
         var chords = extractChords(body);
         res.render('accompaniment', {data:body, chords:chords});
     });
+
 }
 
 <<<<<<< HEAD
