@@ -1,6 +1,5 @@
 var express = require('express');
-var routes = require('./routes');
-var user = require('./routes/user');
+var music = require('./routes/music');
 var tablink = require('./routes/tablink');
 var http = require('http');
 var path = require('path');
@@ -28,21 +27,16 @@ app.get('/making', function(req,res){
     res.render('making');
 });
 
-/*
-app.get('/accompaniment', function(req,res){
-    res.render('accompaniment');
-});
-*/
-
-
 app.get('/accompaniment', routes.handleAccompaniment); // to make an online query for a song
-app.get('/showing', routes.handleRoot);
-app.get('/c', routes.getChords);
-app.get('/n', routes.getNotes);
+app.get('/showing', music.songReq, music..handleRoot);
+app.get('/c', music.songReq, music.getChords);
+app.get('/n', music.songReq, music.getNotes);
+
 /*
 app.post('/m', routes.up);
 app.get('/a', routes.getAllWavs);
 */
+
 app.get('/', function(req,res){
 	res.render('index');
 });
