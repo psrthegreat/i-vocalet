@@ -27,8 +27,8 @@ app.get('/making', function(req,res){
     res.render('making');
 });
 
-app.get('/accompaniment', routes.handleAccompaniment); // to make an online query for a song
-app.get('/showing', music.songReq, music..handleRoot);
+app.get('/accompaniment', music.handleAccompaniment); // to make an online query for a song
+app.get('/showing', music.songReq, music.handleRoot);
 app.get('/c', music.songReq, music.getChords);
 app.get('/n', music.songReq, music.getNotes);
 
@@ -38,7 +38,7 @@ app.get('/a', routes.getAllWavs);
 */
 
 app.get('/', function(req,res){
-	res.render('index');
+	res.render('accompaniment');
 });
 
 app.get('*', function(req, res){
