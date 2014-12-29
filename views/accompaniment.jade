@@ -1,41 +1,23 @@
-doctype html(lang='en')
-head
-	meta(charset='utf-8')
-	meta(http-equiv='X-UA-Compatible', content='IE=edge')
-	meta(name='viewport', content='width=device-width, initial-scale=1')
-	title i-Vocalet
-	link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
-	script(src='/javascripts/jquery-1.9.1.min.js')
-	script(src='/javascripts/bootstrap.min.js')
+extends common
+
+block extraheads
+	link(rel='stylesheet', href='/stylesheets/accompaniment.css')
 	script(src='/javascripts/audiosynth.js')
 	script(src='/javascripts/ivocalet.js')
 	script(src='/javascripts/musician.js')     
 	script(src='/javascripts/orchestra.js')
 	script(src='/javascripts/main.js')
-	style.
-		div{
-			border: 1px solid #000;
-		}
-		pre {
-			white-space:pre-wrap;
-			font-family: "Futura", courier, monospace; 
-			font-weight: 200;
-			font-size: 1.0em;
-			letter-spacing: 0.01em;
-		}
-body
+
+block content
 	.container
 		.row
 			.col-md-12 Vocalet 
-			//.col-md-3.col-md-offset-6 Back
 		.row
 			.col-md-6 
-				pre
-					!{data}
+				pre !{body}
 			.col-md-6
-				//.row
-				//	pre
-				//		!{notes}
+				.row
+					pre #{JSON.stringify(notes)}
 				.row
 					.col-md-10 Don't stop Believing... playing
 					.col-md-1 Add
@@ -44,8 +26,7 @@ body
 					.col-md-12
 				.row
 					- each chord in chords
-					button(onclick= 'orchestra.musicians[0].playNote("#{chord}")')= chord
-						//button(onclick= 'orchestra.musicians[0].play(1000)')= chord
+						button(onclick= 'orchestra.musicians[0].playNote("#{chord}")')= chord
 				.row
 					.col-md-12
 				.row

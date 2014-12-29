@@ -1,0 +1,11 @@
+div{
+	border: 1px solid #000;
+}
+
+pre {
+	white-space:pre-wrap;
+	font-family: "Futura", courier, monospace; 
+	font-weight: 200;
+	font-size: 1.0em;
+	letter-spacing: 0.01em;
+}
