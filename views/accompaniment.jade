@@ -2,11 +2,6 @@ extends common
 
 block extraheads
 	link(rel='stylesheet', href='/stylesheets/accompaniment.css')
-	script(src='/javascripts/audiosynth.js')
-	script(src='/javascripts/ivocalet.js')
-	script(src='/javascripts/musician.js')     
-	script(src='/javascripts/orchestra.js')
-	script(src='/javascripts/main.js')
 
 block content
 	.container
@@ -26,10 +21,18 @@ block content
 					.col-md-12
 				.row
 					- each chord in chords
-						button(onclick= 'orchestra.musicians[0].playNote("#{chord}")')= chord
+						button.chord= chord
 				.row
 					.col-md-12
 				.row
 					.col-md-4 Record
 					.col-md-4 Stop
 					.col-md-4 Upload
+
+block extrascripts
+	script(src='/javascripts/audiosynth.js')
+	script.
+		window.notes =!{JSON.stringify(notes)}; 
+	script(src='/javascripts/ivocalet.js')
+	script(src='/javascripts/orchestra.js')
+	script(src='/javascripts/main.js')

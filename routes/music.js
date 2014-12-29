@@ -78,7 +78,7 @@ exports.songReq = function(req, res, next){
 }
 
 exports.handleRoot = function(req, res){
-	var query = req.query.q;
+	var query = "Nothing Else Matters";
 	extractAll(query, function(all){
 		res.render('showing', all);
 	});
