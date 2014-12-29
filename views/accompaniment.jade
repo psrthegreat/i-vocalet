@@ -44,7 +44,7 @@ body
 					.col-md-12
 				.row
 					- each chord in chords
-						button(onclick= 'orchestra.musicians[0].playNote("#{chord}")')= chord
+					button(onclick= 'orchestra.musicians[0].playNote("#{chord}")')= chord
 						//button(onclick= 'orchestra.musicians[0].play(1000)')= chord
 				.row
 					.col-md-12
