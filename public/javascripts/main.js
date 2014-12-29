@@ -15,15 +15,13 @@ for(var i = 0; i < notes.length; i++){
 		return NOTES[elem%12] + octave;
 	});
 }
-console.log(newObj);
-
 
 $('.chord').click(function(){
 	var chordName = $(this).text();
 	var notesInChord = newObj[chordName];
-	orchestra.stop();
-	orchestra.state = 
-	orchestra.start(notesInChord, 60);
+	orchestra.changeState(notesInChord);
+	//orchestra.stop();
+	orchestra.start(60);
 });
 	
 

@@ -28,9 +28,11 @@ var Orchestra = function() {
 	this.performance = null;
 };
 
-function play(that, state){
+function play(that){
+	var st = that.state;
+	console.log(st);
 	for(var i = 0; i < that.musicians.length; i++){
-		that.musicians[i].play(that.timeCount, state);
+		that.musicians[i].play(that.timeCount, st);
 	}
 	that.timeCount++;
 }
@@ -39,11 +41,16 @@ Orchestra.prototype.addMusician = function(musician){
 	this.musicians.push(musician);
 }
 
-Orchestra.prototype.start = function(state, tempo) {
-	console.log(state);
-	this.timeCount = 0;
-	var timeRep =1000 * (60/tempo);
-	this.performance = window.setInterval(play, timeRep, this, state);
+Orchestra.prototype.changeState = function(state){
+	this.state = state;
+}
+
+Orchestra.prototype.start = function(tempo) {
+	if(this.performance === null){
+		this.timeCount = 0;
+		var timeRep =1000 * (60/tempo);
+		this.performance = window.setInterval(play, timeRep, this);
+	}
 };
 
 Orchestra.prototype.stop = function( ) {
