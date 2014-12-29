@@ -4,9 +4,14 @@ var request = require("request");
 var fs = require('fs');
 var cton = require("./chordtonote");
 var tablink = require("./tablink");
-var memProfile = require('memoizee/profile');
 var memoize = require('memoizee');
 var util = require('./util');
+
+function getLyricsWithChords(chunk){
+	$ = cheerio.load(chunk);
+	var rel = $('#cont').find('pre').nextAll().html();
+	return rel;
+}
 
 var scrape = function(link , callback){
 	 request(link, function(error, response, body){
@@ -16,12 +21,6 @@ var scrape = function(link , callback){
 }
 
 var memoizedScrape = memoize(scrape, {length:1, async: true, maxAge: 10000000, max: 100, primitive: true});
-
-function getLyricsWithChords(chunk){
-	$ = cheerio.load(chunk);
-	var rel = $('#cont').find('pre').nextAll().html();
-	return rel;
-}
 
 function extractChords(chunk){
 	$ = cheerio.load(chunk);
@@ -33,34 +32,41 @@ function extractChords(chunk){
 	return chords.getUnique();
 }
 
-function getSongBodyFromQuery(query, callback){
+function extractBody(query, callback){
   tablink.getSiteURL(query, function(url){
 	if(url === null) callback(null);
 	else{
 		memoizedScrape(url, function(err, dt){
-			console.log(memProfile.log()); 
 			callback(dt);
 		});
 	   }
   });
 }
 
-function getNotesFromChord(dt){
+function extractNotesFromChord(dt){
 	var notesArr = [];
 	for(var i = 0; i < dt.length; i++){
-		var obj = {};
-		if(cton.convert(dt[i])[0] !== null){
-			var notes = cton.convert(dt[i])[0];
-			for (var j =1; j< notes.length; j++){
-			   if(notes[j] < notes[j-1]){
-				   notes[j] += 12;
-			   }
-			}
-			obj[dt[i]] = notes;
-			notesArr.push(obj);
+		if(cton.convert(dt[i])[0] === null) continue;
+		var notes = cton.convert(dt[i])[0];
+		for (var j =1; j< notes.length; j++){
+		   if(notes[j] < notes[j-1]){
+			   notes[j] += 12;
+		   }
 		}
+		var obj = {};
+		obj[dt[i]] = notes;
+		notesArr.push(obj);
 	}
 	return notesArr;
+}
+
+function extractAll(query, callback){
+	extractBody(query, function(body){
+		var chords = extractChords(body);
+		var notes = extractNotesFromChord(chords);
+		var all = {chords: chords, notes: notes, body: body};
+		callback(all);
+	});
 }
 
 exports.songReq = function(req, res, next){
@@ -72,29 +78,30 @@ exports.songReq = function(req, res, next){
 }
 
 exports.handleRoot = function(req, res){
-	getSongBodyFromQuery(req.query.q, function(body){
-		res.render('showing', {data:body});
+	var query = req.query.q;
+	extractAll(query, function(all){
+		res.render('showing', all);
 	});
 }
 
 exports.handleAccompaniment = function(req,res){
-	getSongBodyFromQuery("Nothing Else Matters", function(body){
-		var chords = extractChords(body);
-		res.render('accompaniment', {data:body, chords:chords});
+	var query = "Nothing Else Matters";
+	extractAll(query, function(all){
+		res.render('accompaniment', all);
 	});
 }
 
 exports.getChords = function(req, res){
-	getSongBodyFromQuery(req.query.q, function(body){
-		var dt = extractChords(body);
-		res.json(dt);
+	var query = req.query.q;
+	extractAll(query, function(all){
+		res.json(all.chords);
 	});
 };
 
 exports.getNotes = function(req, res){
-	getSongBodyFromQuery(req.query.q, function(body){
-		var dt = extractChords(body);
-		res.json(getNotesFromChord(dt));
+	var query = req.query.q;
+	extractAll(query, function(all){
+		res.json(all.notes);
 	});
 };
 
