@@ -80,11 +80,6 @@ exports.handleAccompaniment = function(req,res){
 
 }
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> FETCH_HEAD
 exports.getChords = function(req, res){
     if(req.query.q === undefined){
         res.send("Please enter a url ?q= query");

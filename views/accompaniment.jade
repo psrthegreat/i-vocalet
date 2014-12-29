@@ -11,6 +11,7 @@ head
 	script(src='/javascripts/ivocalet.js')
 	script(src='/javascripts/musician.js')     
 	script(src='/javascripts/orchestra.js')
+	script(src='/javascripts/main.js')
 	style.
 		div{
 			border: 1px solid #000;
@@ -32,6 +33,9 @@ body
 				pre
 					!{data}
 			.col-md-6
+				//.row
+				//	pre
+				//		!{notes}
 				.row
 					.col-md-10 Don't stop Believing... playing
 					.col-md-1 Add
@@ -39,20 +43,7 @@ body
 				.row
 					.col-md-12
 				.row
-<<<<<<< HEAD
 					- each chord in chords
-						//button(class="btn btn-primary btn-lg" data-action="bea")= chord
-						button(type="button" class="btn btn-primary btn-lg")= chord
-=======
-					pre
-						!{chords}
->>>>>>> FETCH_HEAD
-					//.col-md-2 C
-					//.col-md-2 D
-					//.col-md-2 E
-					//.col-md-2 F
-					//.col-md-2 G
-					//.col-md-2 A
 				.row
 					.col-md-12
 				.row
