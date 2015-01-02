@@ -27,7 +27,7 @@ app.get('/making', function(req,res){
     res.render('making');
 });
 
-app.get('/accompaniment', music.handleAccompaniment); // to make an online query for a song
+app.get('/accompaniment', music.songReq, music.handleAccompaniment); // to make an online query for a song
 app.get('/showing', music.handleRoot);
 app.get('/c', music.songReq, music.getChords);
 app.get('/n', music.songReq, music.getNotes);

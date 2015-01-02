@@ -1,6 +1,42 @@
-div{
-	border: 1px solid #000;
+body, html{
+	padding: 0px;
+	margin: 0px;
+	height: 100%;
 }
+
+body{
+	padding: 10px 0px;
+	background: rgb(253,253,253);
+}
+
+div{
+	//border: 1px solid #000;
+}
+
+.grayDiv{
+	background: #777;
+	color: white;
+	height: 40px;
+	padding: 0px 10px;
+}
+
+#headDiv{
+	line-height: 70px;
+	padding: 5px 10px;
+	height: 60px;
+}
+
+#title{
+	margin: 0px;
+	padding: 0px;
+}
+
+.grayDiv > h3{
+	line-height: 40px;
+	margin: 0px;
+	font-size: 20px;
+}
+
 
 pre {
 	white-space:pre-wrap;
@@ -8,8 +44,54 @@ pre {
 	font-weight: 200;
 	font-size: 1.0em;
 	letter-spacing: 0.01em;
+	border-radius: 0px;
 }
 
-span{
+pre > span{
     color: #FF1400;
 }
+
+#chordDiv{
+	padding: 0px;
+}
+
+.chord{
+	width: 100%;
+	margin: 0px ;
+	line-height: 150px;
+	height: 150px;
+	border: none;
+	background: rgb(255, 50, 50);
+	color: white;
+}
+
+.chord:hover, .chord:active{
+	background: rgb(245, 40, 40);
+}
+
+.chordCol{
+	padding: 0px;
+	border: 1px solid white;
+}
+
+.col-centered{
+	display: inline-table;
+	text-align: left;
+	float: none;
+	vertical-align: top;
+}
+
+.row-centered{
+	text-align: center;
+}
+
+#lyrics{
+	max-height: 400px;
+	overflow-y: scroll;
+	margin-bottom: 0px;
+}
+
+#mobileContainer{
+	border: 1px solid #666;
+}
+

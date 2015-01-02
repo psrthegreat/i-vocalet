@@ -5,30 +5,37 @@ block extraheads
 
 block content
 	.container
-		.row
-			.col-md-12 Vocalet 
-		.row
-			.col-md-6 
-				pre !{body}
-			.col-md-6
+		.row.row-centered
+			.col-md-5.col-centered#mobileContainer
+				.row.grayDiv.row-centered#headDiv
+					.col-xs-5.col-centered
+						h1#title Vocalet
+					.col-xs-7.col-centered
+						form#searchform(action='/accompaniment', method='get')
+							#header-src-wrap.input-group.input-group-lg
+								input#searchsong.form-control(type='search', name='q', autocomplete='off')
+								span.input-group-btn
+									button#searchbutton.btn.btn-default(type='submit')
+										span.glyphicon.glyphicon-search
 				.row
-					pre #{JSON.stringify(notes)}
-				.row
-					.col-md-10 Don't stop Believing... playing
-					.col-md-1 Add
-					.col-md-1 Sub
-				.row
-					.col-md-12
-				.row
-					- each chord in chords
-						button.chord= chord
-				.row
-					.col-md-12
-				.row
-					.col-md-4 Record
-					.col-md-4 Stop
-					.col-md-4 Upload
-
+					pre#lyrics !{body}
+				.row.grayDiv
+					h3 #{query}
+				.row.row-centered#chordDiv
+					if(chords.length < 5)
+						- each chord in chords
+							.col-xs-3.col-centered.chordCol
+								button.chord= chord
+					else if(chords.length < 7)
+						- each chord in chords
+							.col-xs-2.col-centered.chordCol
+								button.chord= chord
+					else
+						- each chord in chords
+							.col-xs-1.col-centered.chordCol
+								button.chord= chord
+				.row.grayDiv
+					h3 Stop
 block extrascripts
 	script(src='/javascripts/audiosynth.js')
 	script.

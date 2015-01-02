@@ -64,7 +64,7 @@ function extractAll(query, callback){
 	extractBody(query, function(body){
 		var chords = extractChords(body);
 		var notes = extractNotesFromChord(chords);
-		var all = {chords: chords, notes: notes, body: body};
+		var all = {chords: chords, notes: notes, body: body, query: query};
 		callback(all);
 	});
 }
@@ -85,7 +85,7 @@ exports.handleRoot = function(req, res){
 }
 
 exports.handleAccompaniment = function(req,res){
-	var query = "Nothing Else Matters";
+	var query = req.query.q;
 	extractAll(query, function(all){
 		res.render('accompaniment', all);
 	});
