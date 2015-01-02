@@ -86,6 +86,9 @@ exports.handleRoot = function(req, res){
 
 exports.handleAccompaniment = function(req,res){
 	var query = req.query.q;
+	if(query == undefined){
+		query = "nothing else matters";
+	}
 	extractAll(query, function(all){
 		res.render('accompaniment', all);
 	});
