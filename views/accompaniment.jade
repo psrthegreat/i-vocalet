@@ -36,6 +36,14 @@ block content
 								button.chord= chord
 				.row.grayDiv
 					h3 Stop
+				.row
+					pre chords: #{chords}
+					pre Notes:
+						- each note in notes
+							li #{JSON.stringify(note)}
+					pre body: #{body}
+					pre query: #{query}
+
 block extrascripts
 	script(src='/javascripts/audiosynth.js')
 	script.
