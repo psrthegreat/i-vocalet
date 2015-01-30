@@ -1,0 +1,35 @@
+extends common
+
+block extraheads
+	link(rel='stylesheet', href='/stylesheets/accompaniment.css')
+
+block content
+	.container
+		.row.row-centered
+			.col-xs-5.col-centered
+				.row
+					h4 Vocalet
+				.row
+					pre !{query}
+				.row
+					pre#lyrics !{body}
+				.row.row-centered#chordDiv
+					if(chords.length < 5)
+						- each chord in chords
+							.col-xs-3.col-centered.chordCol
+								button.chord= chord
+					else if(chords.length < 7)
+						- each chord in chords
+							.col-xs-2.col-centered.chordCol
+								button.chord= chord
+					else
+						- each chord in chords
+							.col-xs-1.col-centered.chordCol
+								button.chord= chord
+				.row
+					pre Notes:
+						- each note in notes
+								li #{JSON.stringify(note)}
+					
+					
+
