@@ -1,0 +1,24 @@
+extends common
+
+block extraheads
+	script(src='/javascripts/musicController.js')
+	script(src='/javascripts/audiosynth.js')
+	link(rel='stylesheet', href='/stylesheets/accompaniment.css')
+
+block content
+	.container(ng-app='musicApp', ng-controller='musicJSONController')
+		.row.row-centered
+			.row.col-xs-6.col-centered#mobileContainer
+				.row
+					.col-md-6
+						h5 Vocalet
+					.col-md-6
+						h5 Search
+				.row
+					pre(ng-bind-html='explicitlyTrustedHtml')#lyrics
+				.row.grayDiv
+					h4 {{query}}
+				.row.row-centered#chordDiv
+					div(ng-repeat='chord in chords').col-xs-2.col-centered.chordCol
+							button(ng-click='playChord(chord);').chord {{chord}}
+				
