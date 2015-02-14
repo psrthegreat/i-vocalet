@@ -1,5 +1,6 @@
 var MusicsDAO = require('./music').MusicsDAO;
 
+
 /* The ContentHandler must be constructed with a connected db */
 
 function ContentHandler(db){
@@ -30,7 +31,7 @@ function ContentHandler(db){
 
 			if(err) return next(err);
 			
-			return res.render('accompaniment', music);
+			return res.render('angmusic', music);
 		});
 	}
 
@@ -41,7 +42,38 @@ function ContentHandler(db){
 
 		musics.getMusicByQuery(query, function(err, music){
 			"use strict"
+
 			if (err) return next(err);
+
+			return res.json(music);
+		});
+
+	}
+
+	this.handleSearchSongJSON = function(req, res, next){
+		"use strict";
+
+		var query = req.query.q;
+
+		musics.insertEntry(query, function(err, music){
+			"use strict"
+
+			if(err) return next(err);
+
+			return res.json(music);
+		});
+
+	}
+
+	this.handleSearchSong = function(req, res, next){
+		"use strict"
+
+		var query = req.query.q;
+
+		musics.insertEntry(query, function(err, music){
+			"use strict"
+
+			if(err) return next(err);
 
 			return res.json(music);
 		});
