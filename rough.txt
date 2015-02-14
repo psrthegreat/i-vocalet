@@ -1,0 +1,7 @@
+.col-md-6
+	h5 Vocalet
+.col-md-6
+	.input-group
+		input.form-control(type='text', placeholder='Nothing Else Matters...', name='song', ng-model-'searchForm.title')
+		span.input-group-btn
+			button.btn.btn.default(type='button', ng-click='searchForm.submitTheForm()') Go!
