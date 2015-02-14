@@ -10,15 +10,23 @@ block content
 		.row.row-centered
 			.row.col-xs-6.col-centered#mobileContainer
 				.row
+					br
 					.col-md-6
-						h5 Vocalet
+						h4 Vocalet
 					.col-md-6
-						h5 Search
-				.row
+						.input-group
+							input.form-control(type='text', placeholder='Song to Search...', name='song', ng-model-'searchForm.title')
+							span.input-group-btn
+								button.btn.btn-default(type='button', ng-click='searchForm.submitTheForm()') Go!
+						br
+					.row
 					pre(ng-bind-html='explicitlyTrustedHtml')#lyrics
 				.row.grayDiv
 					h4 {{query}}
 				.row.row-centered#chordDiv
 					div(ng-repeat='chord in chords').col-xs-2.col-centered.chordCol
 							button(ng-click='playChord(chord);').chord {{chord}}
-				
+
+
+
+
