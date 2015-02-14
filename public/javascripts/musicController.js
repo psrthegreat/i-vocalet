@@ -9,6 +9,13 @@ musicApp.controller('musicJSONController', ['$scope','$http','$sce', function ($
 		$scope.query = response.query;
 		$scope.NOTES = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
 		$scope.explicitlyTrustedHtml = $sce.trustAsHtml(String($scope.body));
+		$scope.searchForm = {};
+		$scope.searchForm.title = "Nothing Else Matters";
+
+		$scope.searchForm.submitTheForm = function(){
+			console.log("--> Submitting searchForm");
+		}
+
 		$scope.playChord = function(chord){
 			console.log(chord);
 
