@@ -17,4 +17,9 @@ module.exports = exports = function(app,db){
 
 	app.get('/musicJSON', contentHandler.handleMusicJSON);
 
+	app.get('/searchSongJSON', contentHandler.handleSearchSongJSON);
+
+	app.get('/searchSong', contentHandler.handleSearchSong);
+	
+
 }
