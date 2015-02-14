@@ -107,6 +107,9 @@ function MusicsDAO(db){
 			var notes = extractNotesFromChord(chords);
 			var music = {chords: chords, notes: notes, body: body, query: query};
 
+			console.log(query);
+			console.log(music);
+
 			//Now insert the music
 			musics.insert(music, function(err, inserted){
 				"use strict"
