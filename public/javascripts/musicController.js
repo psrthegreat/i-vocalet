@@ -12,8 +12,23 @@ musicApp.controller('musicJSONController', ['$scope','$http','$sce', function ($
 		$scope.searchForm = {};
 		$scope.searchForm.title = "Nothing Else Matters";
 
+
 		$scope.searchForm.submitTheForm = function(){
 			console.log("--> Submitting searchForm");
+			console.log($scope.searchForm.title);
+
+			var song = $scope.searchForm.title;
+
+			$http.get("http://localhost:3000/searchSongJSON/?q=" + song).success(function(response){
+				$scope.chords = response.chords;
+				$scope.notes = response.notes;
+				$scope.body = response.body;
+				$scope.query = response.query;
+				$scope.NOTES = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+				$scope.explicitlyTrustedHtml = $sce.trustAsHtml(String($scope.body));
+				$scope.searchForm.title = song;
+			});
+
 		}
 
 		$scope.playChord = function(chord){
