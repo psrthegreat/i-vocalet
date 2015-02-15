@@ -55,6 +55,7 @@ function ContentHandler(db){
 
 		var query = req.query.q;
 
+
 		musics.insertEntry(query, function(err, music){
 			"use strict"
 
