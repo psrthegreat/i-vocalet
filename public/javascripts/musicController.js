@@ -1,6 +1,6 @@
 var musicApp = angular.module('musicApp',[]);
 
-musicApp.controller('musicJSONController', ['$scope','$http','$sce', function ($scope, $http, $sce){
+musicApp.controller('musicJSONController', ['$scope','$interval','$http','$sce', function ($scope,$interval,$http, $sce){
 	
 	$http.get("http://localhost:3000/musicJSON").success(function(response){
 		$scope.chords = response.chords;
@@ -11,6 +11,7 @@ musicApp.controller('musicJSONController', ['$scope','$http','$sce', function ($
 		$scope.explicitlyTrustedHtml = $sce.trustAsHtml(String($scope.body));
 		$scope.searchForm = {};
 		$scope.searchForm.title = "Nothing Else Matters";
+		$scope.tempo = 2000;
 
 
 		$scope.searchForm.submitTheForm = function(){
@@ -47,7 +48,50 @@ musicApp.controller('musicJSONController', ['$scope','$http','$sce', function ($
 				}
 			});
 		}
+
+
+		var setInterval;
+		$scope.repeatPlayingChord = function(chord) {
+			if (angular.isDefined(setInterval)) {
+				$interval.cancel(setInterval);
+			};
+			$scope.playChord(chord);
+			setInterval = $interval(function(){$scope.playChord(chord);}, $scope.tempo);
+		}
+
+		$scope.getTempo = function() {
+			return $scope.tempo;
+		}
+
+		$scope.setTempo = function(tempo) {
+			$scope.tempo = tempo;
+		}
+
+		$scope.increaseTempo = function(increaseBy) {
+			tempo = $scope.getTempo();
+			newtempo = tempo - increaseBy;
+			console.log("tempo set to %s", String(newtempo));
+			$scope.setTempo(newtempo);
+		}
+
+		$scope.decreaseTempo = function(decreaseBy) {
+			tempo = $scope.getTempo();
+			newtempo = tempo + decreaseBy;
+			console.log("tempo set to %s", String(newtempo));
+			$scope.setTempo(newtempo);
+		}
+
+		$scope.stopPlayingChord = function( ) {
+			if (angular.isDefined(setInterval)) {
+				$interval.cancel(setInterval);
+			}
+		}
+
+		
 	});
+
+
+	angular.isDefined(stop)
 
 	
 }]);

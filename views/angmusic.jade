@@ -25,8 +25,14 @@ block content
 					h4 {{query}}
 				.row.row-centered#chordDiv
 					div(ng-repeat='chord in chords').col-xs-2.col-centered.chordCol
-							button(ng-click='playChord(chord);').chord {{chord}}
-
+						button(ng-click='repeatPlayingChord(chord);').chord {{chord}}
+				.row
+					.col-xs-2
+						button(ng-click='decreaseTempo(1000);') S
+					.col-xs-8
+						button(ng-click='stopPlayingChord();') Stop
+					.col-xs-2
+						button(ng-click='increaseTempo(1000);') A
 
 
 
