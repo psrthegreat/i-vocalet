@@ -11,7 +11,8 @@ musicApp.controller('musicJSONController', ['$scope','$interval','$http','$sce',
 		$scope.explicitlyTrustedHtml = $sce.trustAsHtml(String($scope.body));
 		$scope.searchForm = {};
 		$scope.searchForm.title = "Nothing Else Matters";
-		$scope.tempo = 2000;
+		$scope.tempo = 500;
+		$scope.chord = null;
 
 
 		$scope.searchForm.submitTheForm = function(){
@@ -32,12 +33,10 @@ musicApp.controller('musicJSONController', ['$scope','$interval','$http','$sce',
 
 		}
 
-		$scope.playChord = function(chord){
-			console.log(chord);
-
+		$scope.playChord = function(){
 			$scope.notes.forEach(function(noteObject){
 				for (var key in noteObject){
-					if (key == chord) {
+					if (key == $scope.chord) {
 						var notesIndex = noteObject[key];
 						notesIndex.forEach(function(noteIndex){
 							var note = $scope.NOTES[noteIndex%12];
@@ -49,14 +48,12 @@ musicApp.controller('musicJSONController', ['$scope','$interval','$http','$sce',
 			});
 		}
 
-
 		var setInterval;
 		$scope.repeatPlayingChord = function(chord) {
-			if (angular.isDefined(setInterval)) {
-				$interval.cancel(setInterval);
-			};
-			$scope.playChord(chord);
-			setInterval = $interval(function(){$scope.playChord(chord);}, $scope.tempo);
+			$scope.chord = chord;
+			if (!angular.isDefined(setInterval)) {
+				setInterval = $interval(function(){$scope.playChord();}, $scope.tempo);	
+			}
 		}
 
 		$scope.getTempo = function() {
