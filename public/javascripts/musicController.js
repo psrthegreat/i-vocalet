@@ -48,7 +48,8 @@ musicApp.controller('musicJSONController', ['$scope','$interval','$http','$sce',
 			});
 		}
 
-		
+		var setInterval;
+
 		$scope.repeatPlayingChord = function(chord) {
 			$scope.chord = chord;
 			if ($scope.state === "stopped") {
@@ -81,8 +82,8 @@ musicApp.controller('musicJSONController', ['$scope','$interval','$http','$sce',
 
 		$scope.stopPlayingChord = function( ) {
 			if($scope.state === "playing"){
-				$scope.state = "stopped";
 				$interval.cancel(setInterval);
+				$scope.state = "stopped";
 			}
 		}
 
