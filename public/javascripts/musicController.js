@@ -50,11 +50,20 @@ musicApp.controller('musicJSONController', ['$scope','$interval','$http','$sce',
 
 		var setInterval;
 
+		//allows changing of tempo while it is playing
+		var anonyfn = function(){
+			$interval.cancel(setInterval);
+
+			$scope.playChord();
+
+			setInterval = $interval(anonyfn, $scope.tempo);
+		}
+
 		$scope.repeatPlayingChord = function(chord) {
 			$scope.chord = chord;
 			if ($scope.state === "stopped") {
 				$scope.state = "playing";
-				setInterval = $interval(function(){$scope.playChord();}, $scope.tempo);	
+				setInterval = $interval(anonyfn, $scope.tempo);	
 			}
 		}
 
