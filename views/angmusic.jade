@@ -25,6 +25,10 @@ block content
 					h4 {{query}}
 						.pull-right
 							button.btn.btn-default(ng-click='stopPlayingChord();') Stop
+						.pull-right
+							button.btn(ng-click='decreaseTempo(100);') -
+						.pull-right
+							button.btn(ng-click='increaseTempo(100);') +
 				.row.row-centered#chordDiv
 					div(ng-repeat='chord in chords').col-xs-2.col-centered.chordCol
 						button(ng-click='repeatPlayingChord(chord);').chord {{chord}}
@@ -32,10 +36,6 @@ block content
 					.col-xs-12
 						
 				.row
-					.pull-left
-						button.btn(ng-click='decreaseTempo(100);') Decrease Tempo
-					.pull-right
-						button.btn(ng-click='increaseTempo(100);') Increase Tempo
-
+					
 
 
