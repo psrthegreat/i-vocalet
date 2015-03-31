@@ -16,8 +16,8 @@ div{
 .grayDiv{
 	background: #777;
 	color: white;
-	height: 40px;
-	padding: 0px 10px;
+	min-height: 40px;
+	padding: 10px 10px;
 }
 
 #headDiv{
@@ -32,8 +32,8 @@ div{
 }
 
 .grayDiv > h3{
-	line-height: 40px;
-	margin: 0px;
+	line-height: 30px;
+	margin: 0px auto;
 	font-size: 20px;
 }
 

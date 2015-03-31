@@ -23,16 +23,19 @@ block content
 					pre(ng-bind-html='explicitlyTrustedHtml')#lyrics
 				.row.grayDiv
 					h4 {{query}}
+						.pull-right
+							button.btn.btn-default(ng-click='stopPlayingChord();') Stop
 				.row.row-centered#chordDiv
 					div(ng-repeat='chord in chords').col-xs-2.col-centered.chordCol
 						button(ng-click='repeatPlayingChord(chord);').chord {{chord}}
+				.row.row-centered
+					.col-xs-12
+						
 				.row
-					.col-xs-2
-						button(ng-click='decreaseTempo(100);') S
-					.col-xs-8
-						button(ng-click='stopPlayingChord();') Stop
-					.col-xs-2
-						button(ng-click='increaseTempo(100);') A
+					.pull-left
+						button.btn(ng-click='decreaseTempo(100);') Decrease Tempo
+					.pull-right
+						button.btn(ng-click='increaseTempo(100);') Increase Tempo
 
 
 

@@ -28,6 +28,10 @@ p {
 	border: none;
 }
 
+.grayDiv{
+	height: 400px;
+}
+
 section {
 	padding-top: 100px;
 	padding-bottom: 100px;
