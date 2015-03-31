@@ -13,7 +13,7 @@ musicApp.controller('musicJSONController', ['$scope','$interval','$http','$sce',
 		$scope.searchForm.title = "Nothing Else Matters";
 		$scope.tempo = 500;
 		$scope.chord = null;
-
+		$scope.state = "stopped";
 
 		$scope.searchForm.submitTheForm = function(){
 			console.log("--> Submitting searchForm");
@@ -48,10 +48,11 @@ musicApp.controller('musicJSONController', ['$scope','$interval','$http','$sce',
 			});
 		}
 
-		var setInterval;
+		
 		$scope.repeatPlayingChord = function(chord) {
 			$scope.chord = chord;
-			if (!angular.isDefined(setInterval)) {
+			if ($scope.state === "stopped") {
+				$scope.state = "playing";
 				setInterval = $interval(function(){$scope.playChord();}, $scope.tempo);	
 			}
 		}
@@ -79,7 +80,8 @@ musicApp.controller('musicJSONController', ['$scope','$interval','$http','$sce',
 		}
 
 		$scope.stopPlayingChord = function( ) {
-			if (angular.isDefined(setInterval)) {
+			if($scope.state === "playing"){
+				$scope.state = "stopped";
 				$interval.cancel(setInterval);
 			}
 		}
