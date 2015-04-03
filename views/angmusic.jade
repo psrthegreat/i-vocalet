@@ -1,41 +1,60 @@
 extends common
 
 block extraheads
-	script(src='/javascripts/musicController.js')
-	script(src='/javascripts/audiosynth.js')
-	link(rel='stylesheet', href='/stylesheets/accompaniment.css')
+    script(src='/javascripts/musicController.js')
+    script(src='/javascripts/audiosynth.js')
+    link(rel='stylesheet', href='/stylesheets/accompaniment.css')
+
+
+
 
 block content
-	.container(ng-app='musicApp', ng-controller='musicJSONController')
-		.row.row-centered
-			.row.col-xs-6.col-centered#mobileContainer
-				.row
-					br
-					.col-md-6
-						h4 Vocalet
-					.col-md-6
-						.input-group
-							input.form-control(type='text', id='searchSong', ng-model='searchForm.title')
-							span.input-group-btn
-								button.btn.btn-default(type='button', ng-click='searchForm.submitTheForm()') Go!
-						br
-					.row
-					pre(ng-bind-html='explicitlyTrustedHtml')#lyrics
-				.row.grayDiv
-					h4 {{query}}
-						.pull-right
-							button.btn.btn-default(ng-click='stopPlayingChord();') Stop
-						.pull-right
-							button.btn(ng-click='decreaseTempo(100);') -
-						.pull-right
-							button.btn(ng-click='increaseTempo(100);') +
-				.row.row-centered#chordDiv
-					div(ng-repeat='chord in chords').col-xs-2.col-centered.chordCol
-						button(ng-click='repeatPlayingChord(chord);').chord {{chord}}
-				.row.row-centered
-					.col-xs-12
-						
-				.row
-					
+    .container(ng-app='musicApp', ng-controller='musicJSONController')
+        .row.row-centered
+            .row.col-xs-6.col-centered#mobileContainer
+                .row
+                    nav.navbar.navbar-default(style='margin-bottom: 0px')
+                        .container-fluid
+                            .navbar-header
+                                button.navbar-toggle.collapsed(type="button", data-toggle='collapse', data-target="#navbar-collapse-1")
+                                    span.sr-only Toggle navigation
+                                    span.icon-bar
+                                    span.icon-bar
+                                    span.icon-bar
+                                a.navbar-brand(href='#')
+                                    img(alt='Brand', src="vocalet.ico")
+                            .collapse.navbar-collapse(id="navbar-collapse-1")
+                                form.navbar-form.navbar-right(role='search')
+                                    .form-group
+                                        input.form-control(type='text', ng-model='searchForm.title')
+                                    button.btn.btn-default(type='button',style='border: 0px',ng-click='searchForm.submitTheForm()') Go!
+                    
+                .row  
+                    pre(ng-bind-html='explicitlyTrustedHtml')#lyrics
+                
+                
+                .row
 
+                .row.row-centered#chordDiv
+                    div(ng-repeat='chord in chords').col-xs-2.col-centered.chordCol
+                        button(ng-click='repeatPlayingChord(chord);').chord {{chord}}
+
+                .row#tempoDiv  
+                      .btn-group.btn-group-justified(role='group', aria-label='...')
+                        .btn-group(role='group')
+                          button.btn.btn-default(type='button', ng-click='decreaseTempo(100);', style='border:0px; color:rgb(245, 40, 40)')
+                            span.glyphicon.glyphicon-step-backward(aria-hidden='true')
+                        |         
+                        .btn-group(role='group')
+                          button.btn.btn-default(type='button', ng-click='stopPlayingChord();', style='border:0px; color:rgb(245, 40, 40)')
+                            span.glyphicon.glyphicon-stop(aria-hidden='true')
+                        |         
+                        .btn-group(role='group')
+                          button.btn.btn-default(type='button', ng-click='increaseTempo(100);', style='border:0px; color:rgb(245, 40, 40)')
+                            span.glyphicon.glyphicon-step-forward(aria-hidden='true')
+
+                .row.row-centered
+                    .col-xs-12   
+                .row
+                    
 
