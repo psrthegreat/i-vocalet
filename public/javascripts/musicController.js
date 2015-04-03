@@ -14,6 +14,17 @@ musicApp.controller('musicJSONController', ['$scope','$interval','$http','$sce',
 		$scope.tempo = 500;
 		$scope.chord = null;
 		$scope.state = "stopped";
+		$scope.initialize = function( ) {
+			Synth.setVolume(0.00);
+			$scope.NOTES.forEach(function(note){
+				Synth.play('piano',note,4,2);
+			});
+			Synth.setVolume(1.00);
+		};
+
+		// Initializing all notes....
+		$scope.initialize();
+	
 
 		$scope.searchForm.submitTheForm = function(){
 			console.log("--> Submitting searchForm");
@@ -78,14 +89,14 @@ musicApp.controller('musicJSONController', ['$scope','$interval','$http','$sce',
 		$scope.increaseTempo = function(increaseBy) {
 			tempo = $scope.getTempo();
 			newtempo = tempo - increaseBy;
-			console.log("tempo set to %s", String(newtempo));
+			//console.log("tempo set to %s", String(newtempo));
 			$scope.setTempo(newtempo);
 		}
 
 		$scope.decreaseTempo = function(decreaseBy) {
 			tempo = $scope.getTempo();
 			newtempo = tempo + decreaseBy;
-			console.log("tempo set to %s", String(newtempo));
+			//console.log("tempo set to %s", String(newtempo));
 			$scope.setTempo(newtempo);
 		}
 
@@ -96,6 +107,7 @@ musicApp.controller('musicJSONController', ['$scope','$interval','$http','$sce',
 			}
 		}
 
+		
 		
 	});
 
