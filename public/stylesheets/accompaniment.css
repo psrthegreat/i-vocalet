@@ -20,6 +20,11 @@ div{
 	padding: 10px 10px;
 }
 
+
+#tempoDiv {
+	padding: 2px 2px;
+}
+
 #headDiv{
 	line-height: 70px;
 	padding: 5px 10px;
@@ -59,7 +64,7 @@ pre > span{
 	width: 100%;
 	margin: 0px ;
 	line-height: 150px;
-	height: 150px;
+	height: 125px;
 	border: none;
 	background: rgb(255, 50, 50);
 	color: white;
@@ -86,7 +91,7 @@ pre > span{
 }
 
 #lyrics{
-	max-height: 400px;
+	max-height: 350px;
 	overflow-y: scroll;
 	margin-bottom: 0px;
 }
