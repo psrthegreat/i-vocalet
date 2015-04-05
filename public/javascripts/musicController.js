@@ -11,9 +11,11 @@ musicApp.controller('musicJSONController', ['$scope','$interval','$http','$sce',
 		$scope.explicitlyTrustedHtml = $sce.trustAsHtml(String($scope.body));
 		$scope.searchForm = {};
 		$scope.searchForm.title = "Nothing Else Matters";
+		$scope.searchForm.numberOfChords = response.chords.length;
 		$scope.tempo = 500;
 		$scope.chord = null;
 		$scope.state = "stopped";
+
 		$scope.initialize = function( ) {
 			Synth.setVolume(0.00);
 			$scope.NOTES.forEach(function(note){
@@ -40,9 +42,44 @@ musicApp.controller('musicJSONController', ['$scope','$interval','$http','$sce',
 				$scope.NOTES = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
 				$scope.explicitlyTrustedHtml = $sce.trustAsHtml(String($scope.body));
 				$scope.searchForm.title = song;
-			});
+				$scope.searchForm.numberOfChords = response.chords.length;
+			});	
 
 		}
+
+
+		$scope.getNumberOfChords = function(){
+			return $scope.chords.length;
+		};
+
+		$scope.getAutoNumberOfColumns = function( ){
+			
+			var result = "col-xs-1";
+
+			switch($scope.getNumberOfChords()) {
+			    case 1:
+			        result = "col-xs-12";
+			        break;
+			    case 2:
+			        result = "col-xs-6";
+			        break;
+			    case 3:
+			    	result = "col-xs-4";
+			    	break;
+		    	case 4:
+		    		result = "col-xs-3";
+		    		break;
+	    		case 5:
+	    			result = "col-xs-2";
+	    			break;
+    			case 6:
+    				result = "col-xs-2";
+    				break;
+			    default:
+			        result = "col-xs-1";
+			}
+			return result;
+		};
 
 		$scope.playChord = function(){
 			$scope.notes.forEach(function(noteObject){
