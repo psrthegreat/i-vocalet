@@ -13,6 +13,8 @@ block content
         .row.row-centered
             .row.col-xs-6.col-centered#mobileContainer
                 .row
+
+                .row
                     nav.navbar.navbar-default(style='margin-bottom: 0px')
                         .container-fluid
                             .navbar-header
@@ -22,7 +24,7 @@ block content
                                     span.icon-bar
                                     span.icon-bar
                                 a.navbar-brand(href='#')
-                                    img(alt='Brand', src="vocalet.ico")
+                                    img(alt='Brand', src="favicon.ico")
                             .collapse.navbar-collapse(id="navbar-collapse-1")
                                 form.navbar-form.navbar-right(role='search')
                                     .form-group
@@ -31,12 +33,11 @@ block content
                     
                 .row  
                     pre(ng-bind-html='explicitlyTrustedHtml')#lyrics
-                
-                
+
                 .row
 
                 .row.row-centered#chordDiv
-                    div(ng-repeat='chord in chords').col-xs-2.col-centered.chordCol
+                    div(ng-repeat='chord in chords', class='{{getAutoNumberOfColumns()}}').col-centered.chordCol
                         button(ng-click='repeatPlayingChord(chord);').chord {{chord}}
 
                 .row#tempoDiv  
@@ -54,7 +55,8 @@ block content
                             span.glyphicon.glyphicon-step-forward(aria-hidden='true')
 
                 .row.row-centered
-                    .col-xs-12   
-                .row
+                    .col-xs-12 
+
+                
                     
 
